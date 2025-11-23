@@ -8,8 +8,8 @@ interface Cache {
     data: Uint8Array;
 }
 
-const LIBRARY_PATH = "Library/LelouchHe/Silversearch-Chinese-Tokenizer"
-const WASM_PATH = `${LIBRARY_PATH}/silversearch-tokenizer-chinese.wasm`
+const LIBRARY_PATH = "Library/LelouchHe"
+const WASM_PATH = `${LIBRARY_PATH}/silversearch-chinese-tokenizer.wasm`
 
 const CACHE_KEY = "silversearch-chinese-tokenizer";
 const CACHE_VERSION = 1;
@@ -19,7 +19,7 @@ let wasm: InitOutput | null = null;
 export async function init() {
     if (wasm) {
         console.log("[Silversearch-Chinese-Tokenizer] Already initialized");
-        return true;
+        return;
     }
 
     // This cache is per-browser, so multiple tabs share the same data
@@ -41,10 +41,8 @@ export async function init() {
         console.log("[Silversearch-Chinese-Tokenizer] Initialized");
     } catch (e) {
         console.error("[Silversearch-Chinese-Tokenizer] Failed to load: ", e);
-        return false;
+        return;
     }
-
-    return wasm !== null;
 }
 
 export function isTokenizable(text: string): boolean {

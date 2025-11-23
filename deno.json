@@ -1,13 +1,13 @@
 {
   "tasks": {
     "build": "deno run -A build.ts",
-    "debug": "deno run -A build.ts --debug",
-    "check": "deno check tokenizer.ts build.ts"
+    "debug": "deno run -A build.ts --debug"
   },
   "compilerOptions": {
     "strict": true
   },
   "imports": {
+    "@luca/esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader@^0.11.1",
     "esbuild": "npm:esbuild@^0.20.0",
     "@silverbulletmd/silverbullet/syscalls": "jsr:@silverbulletmd/silverbullet@^2.0.0/syscalls"
   }

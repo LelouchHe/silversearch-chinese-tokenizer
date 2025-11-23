@@ -9,7 +9,7 @@ In [Library Manager](https://silverbullet.md/Library%20Manager), click "Install 
 [Silversearch](https://github.com/MrMugame/silversearch) should also be installed, and add below to its config:
 
 ```lua
-config.set("silversearch.tokenizers", {"Library/LelouchHe/Silversearch-Chinese-Tokenizer/silversearch-chinese-tokenizer.js"})
+config.set("silversearch.tokenizers", {"Library/LelouchHe/silversearch-chinese-tokenizer.js"})
 ```
 
 # Dependency
