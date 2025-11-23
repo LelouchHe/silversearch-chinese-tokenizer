@@ -8,9 +8,11 @@ await esbuild.build({
   bundle: true,
   format: "esm",
   outfile: "silversearch-chinese-tokenizer.js",
-  plugins: [...denoPlugins()],
   sourcemap: isDebug ? "inline" : false,
   minify: !isDebug,
+
+  // bundle jsr resources (silverbullet syscalls)
+  plugins: [...denoPlugins()],
 });
 
 esbuild.stop();
