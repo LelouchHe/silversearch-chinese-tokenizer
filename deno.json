@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "build": "deno run -A build.ts",
+    "debug": "deno run -A build.ts --debug",
+    "check": "deno check tokenizer.ts build.ts"
+  },
+  "compilerOptions": {
+    "strict": true
+  },
+  "imports": {
+    "esbuild": "npm:esbuild@^0.20.0",
+    "@silverbulletmd/silverbullet/syscalls": "jsr:@silverbulletmd/silverbullet@^2.0.0/syscalls"
+  }
+}

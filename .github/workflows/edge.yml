@@ -1,0 +1,53 @@
+name: Edge
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install dependencies
+        run: |
+          deno install
+
+      - name: Build step
+        run: |
+          deno task build
+
+      - name: Build PLUG.md
+        run: |
+          mv PLUG.md PLUG_SRC.md
+          m4 PLUG_SRC.md > PLUG.md
+
+      - name: Update release tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "edge"
+          force_push_tag: true
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          draft: false
+          prerelease: true
+          tag_name: edge
+          body: Automated build from commit ${{ github.sha }}
+          files: |
+            PLUG.md
+            silversearch-chinese-tokenizer.js
+            silversearch-chinese-tokenizer.wasm
